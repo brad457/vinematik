@@ -141,9 +141,7 @@ window.addEventListener("load", () => {
 
 // Detect safari
   if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Mac') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
-    name = "Safari"
-    alert("Merhaba iOS kullanıcısı, Apple kaynaklı bir problemden dolayı şu an için uygulamamız çalışmıyor. Biz onunla uğraşırken senden vineları web tarayıcından izlemeni rica ediyoruz.");
-    console.log("Safari")
+    document.getElementById("videoEl").setAttribute("crossorigin", "true");
 };
 
 // Video source for getting videos
