@@ -1,10 +1,11 @@
-/* MAIN TAGS */
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background-color: #393e46;
   font-family: 'Inter', sans-serif;
 }
@@ -15,19 +16,10 @@ p {
   margin: 2% 0 0;
 }
 
-a {
-  text-decoration: none;
-  color:inherit;
-  outline: none;
-}
+/* .main-container {
+  max-height: 100vh;
+} */
 
-a:hover{
-  color: #00adb5;
-}
-
-
-/* MAIN CSS */
-/* HEADER ITEMS */
 .header {
   background-color: rgba(34, 40, 49, 0.3);
   margin: 0;
@@ -50,8 +42,6 @@ a:hover{
   display: inline-block;
 }
 
-
-/* BTN VINE */
 .btn-vine {
   margin-right: 0;
 }
@@ -61,8 +51,14 @@ a:hover{
   top: 1px;
 }
 
+#btn-install {
+  display: none;
+}
 
-/* GENERAL BTN CLASSES */
+#btn-install-mobile{
+  display: none;
+}
+
 .btn-light {
   color: #00adb5;
   background-color: #f8f9fa;
@@ -118,10 +114,20 @@ a:hover{
   border-color: #f8f9fa;
 }
 
+a:hover{
+  color: #00adb5;
+}
 
-/* VIDEO SECTION */
-#video-section {
-  margin: 0 10%;
+a {
+  text-decoration: none;
+  color:inherit;
+  outline: none;
+}
+
+.paragraph {
+  font-size: 1rem;
+  text-align: center;
+  color: #222831;
 }
 
 .vid {
@@ -133,11 +139,10 @@ a:hover{
 .video {
   display: block;
   margin: 2% 0;
-  width: 75%;
+  width: 81%;
   height: 100%;
 }
 
-/* VIDEO SECTION - BUTTONS */
 .btn-next {
   font-weight: 600;
   font-size: 1.5rem;
@@ -153,22 +158,18 @@ a:hover{
 .skip-buttons{
   display: flex;
   flex-direction: column;
-  width: 21%;
 }
 
 .btn-skip {
   margin-top: 3%;
   margin-bottom: 3%;
-
 }
 
-/* DESCRIPTION - DESKTOP */
 .small-desktop {
   margin-top: 2%;
   margin-bottom: 3.5%;
 }
 
-/* VIDEO SECTION - HIDDEN BUTTONS */
 .small-mobile {
   display: none;
 }
@@ -181,21 +182,16 @@ a:hover{
   display: none;
 }
 
-#btn-install {
-  display: none;
-}
-
-#btn-install-mobile{
-  display: none;
-}
-
 #btn-mobile:active {
   position: relative;
   top: 1px;
 }
 
+#video-section {
+  margin: 0 10%;
+}
 
-/* GUIDE PAGE CSS*/
+/* GUIDE */
 .guide {
   margin: 2% 10%;
   color: #e4e4e4;
@@ -248,7 +244,7 @@ a:hover{
   font-size: 1.5rem;
 }
 
-/* GUIDE DETECTING DEVICES APPLE/ANDROID*/
+/* GUIDE APPLE/ANDROID */
 
 @supports (-webkit-touch-callout:none) {
   .guide-android{
@@ -263,15 +259,25 @@ a:hover{
 }
 
 
-/* LAPTOP MEDIA QUERY */
-@media (max-width:1281px) {
 
-  /* LMQ - VIDEO SECTION */
+
+@media (max-width:1281px) {
   #video-section {
     display: flex;
     min-height: 100vh;
     align-items: center;
     justify-content: space-around;
+  }
+
+  .small-desktop {
+    display: none;
+  }
+
+  .small-laptop {
+    display: block;
+    text-align: center;
+    color: #E4E4E4;
+    margin-bottom: 3.5%;
   }
 
   .vid {
@@ -280,35 +286,20 @@ a:hover{
     width: 100%;
   }
 
+  .btn-next {
+    width: 100%;
+    padding: 1% 0;
+    margin-left: 2%;
+  }
+
   .video {
     width: 100%;
     margin-bottom: 4%;
   }
 
-  /* LMQ - HIDDEN BUTTONS */
-  .small-desktop {
-    display: none;
-  }
-
-  /* LMQ - DESCRIPTION LAPTOP */
-  .small-laptop {
-    display: block;
-    text-align: center;
-    color: #E4E4E4;
-    margin-bottom: 3.5%;
-  }
-
-  /* LMQ - OPENED BUTTONS */
   #btn-install {
     display: inline-block;
     margin-left: 1rem;
-  }
-
-  /* LMQ - REGULAR BUTTON CHANGES */
-  .btn-next {
-    width: 100%;
-    padding: 1% 0;
-    margin-left: 2%;
   }
 
   .skip-buttons{
@@ -323,16 +314,11 @@ a:hover{
 
   #btn-prev {
     margin-right: 2%;
-    margin-left: 0;
   }
 
 }
 
-
-/* TABLET/IPAD MEDIA QUERY */
 @media (max-width:961px) {
-
-  /* TMQ - VIDEO SECTION */
   #video-section {
     display: flex;
     min-height: 90vh;
@@ -342,8 +328,28 @@ a:hover{
     margin-top: 0;
   }
 
+  .small-desktop{
+    display: none;
+  }
+
+  .small-mobile {
+    display: block;
+    text-align: center;
+    color: #E4E4E4;
+  }
+
+  .small-laptop {
+    display: none;
+  }
+
   .vid {
     flex-direction: column;
+    margin: 0;
+  }
+
+  .btn-next {
+    width: 100%;
+    padding: 1% 0;
     margin: 0;
   }
 
@@ -352,27 +358,8 @@ a:hover{
     margin-bottom: 4%;
   }
 
-  /* TMQ - HIDDEN DESCRIPTIONS */
-  .small-desktop{
+  .btn-vine {
     display: none;
-  }
-
-  .small-laptop {
-    display: none;
-  }
-
-  /* TMQ - OPENED DESCRIPTION */
-  .small-mobile {
-    display: block;
-    text-align: center;
-    color: #E4E4E4;
-  }
-
-  /* TMQ - REGULAR BUTTON CHANGES */
-  .btn-next {
-    width: 100%;
-    padding: 1% 0;
-    margin: 0;
   }
 
   #btn-mobile {
@@ -380,22 +367,13 @@ a:hover{
     margin: 4% 0;
     font-size: 1.5rem;
     width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
 
-  /* TMQ - HIDDEN BUTTONS */
-  .btn-vine {
-    display: none;
-  }
+
 
 }
 
-
-/* TELEPHONE MEDIA QUERY */
 @media (max-width:641px) {
-
-  /* TMQ - VIDEO SECTION */
   #video-section {
     display: flex;
     flex-direction: column;
@@ -403,24 +381,6 @@ a:hover{
     align-items: center;
   }
 
-  .vid {
-    flex-direction: column;
-  }
-
-  .video {
-    width: 100%;
-    margin-bottom: 4%;
-  }
-
-  /* TMQ - OPENED DESCRIPTION */
-  .small-mobile {
-    display: block;
-    text-align: center;
-    color: #E4E4E4;
-    margin: auto;
-  }
-
-  /* TMQ - HIDDEN DESCRIPTIONS */
   .small-desktop{
     display: none;
   }
@@ -429,22 +389,36 @@ a:hover{
     display: none;
   }
 
-  /* TMQ - HEADER CHANGES */
+  .small-mobile {
+    display: block;
+    text-align: center;
+    color: #E4E4E4;
+    margin: auto;
+  }
+
+  .vid {
+    flex-direction: column;
+  }
+
+  .btn-next {
+    font-size: 1.4rem;
+    width: 100%;
+    padding: 1% 0;
+    margin: 0;
+  }
+
+  .video {
+    width: 100%;
+    margin-bottom: 4%;
+  }
+
+
   .header-items {
     justify-content: space-around;
   }
 
-  /* TMQ - HEADER HIDDEN BUTTONS */
   .header-buttons {
     display: none;
-  }
-
-  /* TMQ - OPENED - CHANGEd BUTTONS */
-  .btn-next {
-    font-size: 1.2rem;
-    width: 100%;
-    padding: 1% 0;
-    margin: 0;
   }
 
   #btn-mobile {
@@ -452,8 +426,6 @@ a:hover{
     margin: 4% 0;
     font-size: 1.2rem;
     width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   #btn-install-mobile {
@@ -461,14 +433,11 @@ a:hover{
     margin:0;
     font-size: 1.2rem;
     width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
 
 }
 
-
-/* STANDALONE - NOT SHOWING INSTALL BUTTON */
+/* STANDALONE */
 
 @media all and (display-mode: standalone) {
 

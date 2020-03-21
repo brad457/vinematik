@@ -1,21 +1,7 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
-  <!-- GOOGLE ANALYTICS CODE -->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161420123-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-161420123-1');
-  </script>
-
   <!-- MANIFEST -->
   <link rel='manifest' href='./manifest.json'>
 
@@ -23,9 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00adb5">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#00adb5">
   <meta name="msapplication-TileColor" content="#00adb5">
   <meta name="theme-color" content="#00adb5">
 
@@ -34,19 +18,19 @@
   <meta name="keywords" content="vine, vinematik, vine izle, vine izleme uygulaması, reklamsız vine, sınırsız vine, komik video, güncel vine, yeni vine, rastgele vine">
   <meta name="robots" content="index, follow">
   <meta name="language" content="TR">
-  <meta name="url" content="https://vinematik.com">
+  <meta name="url" content="https://ondersumer07.github.io/vinematik/">
 
   <!-- OG META TAGS -->
   <meta name="og:title" content="Vinematik | Daima güncel vine izleme sitesi." />
   <meta name="og:type" content="vine" />
-  <meta name="og:url" content="https://vinematik.com" />
+  <meta name="og:url" content="https://ondersumer07.github.io/vinematik/" />
   <meta name="og:image" content="/images/android-chrome-512x512.png" />
   <meta name="og:site_name" content="Vinematik" />
   <meta name="og:description" content="Daima güncel ve tamamen rastgele vine izleyebileceğiniz sizi her vinecıyla tanıştırıp eğlenceli vakit geçirmenizi sağlayacak bir vine uygulaması!" />
 
   <!-- OG TWITTER META TAGS -->
   <meta name="twitter:card" content="Daima güncel ve tamamen rastgele vine izleyebileceğiniz sizi her vinecıyla tanıştırıp eğlenceli vakit geçirmenizi sağlayacak bir vine uygulaması!" />
-  <meta property="og:url" content="https://vinematik.com" />
+  <meta property="og:url" content="https://ondersumer07.github.io/vinematik/" />
   <meta property="og:title" content="Vinematik | Daima güncel vine izleme sitesi." />
   <meta property="og:description" content="Daima güncel ve tamamen rastgele vine izleyebileceğiniz sizi her vinecıyla tanıştırıp eğlenceli vakit geçirmenizi sağlayacak bir vine uygulaması!" />
   <meta property="og:image" content="/images/android-chrome-512x512.png" />
@@ -81,13 +65,13 @@
     <div class="header">
 
       <div class="header-items">
-        <h1 class="header-title"><a href="index.html">Vinematik</a></h1>
+        <h1 class="header-title"><a href="#">Vinematik</a></h1>
 
         <div class="header-buttons">
 
-          <a class="btn-light btn-outline-light btn-vine" href="https://forms.gle/HfHbjrFVALLm3wGt8" target="_blank">Vine Gönder</a>
+          <button class="btn-light btn-outline-light btn-vine"><a href="https://forms.gle/HfHbjrFVALLm3wGt8" target="_blank">Vine Gönder</a></button>
 
-          <a id="btn-install" class="btn-light btn-outline-light btn-vine" href="guide.html">Uygulamayı indir <i class="fas fa-arrow-circle-down"></i></a>
+          <button id="btn-install" class="btn-light btn-outline-light btn-vine"><a href="guide.html">Uygulamayı indir </a><i class="fas fa-arrow-circle-down"></i></button>
 
         </div>
 
@@ -101,20 +85,21 @@
       <div class="vid">
         <p class="small-mobile"><i>Sola kaydırarak bir sonraki vine'a, sağa kaydırarak bir önceki vine'a geçebilirsin!</i></p>
         <video class="video" height="720" width="1280" controls id="videoEl" autoplay>
-          <source id="vsrc" type='video/mp4' preload="auto"/>
+          <source id="vsrc" type='video/mp4' />
           Please update your browser.
         </video>
 
 
         <div class="skip-buttons">
-          <a href="#" id="btn-next" class="btn-next btn-light btn-skip" onclick="newVideo()">Yeni Vine <i class="fas fa-angle-right"></i></a>
-          <a href="#" id="btn-prev" class="btn-next btn-light btn-skip" onclick="prevVideo()"><i class="fas fa-angle-left"></i> Önceki Vine</a>
+        <a href="#" id="btn-next" class="btn-next btn-light btn-skip" onclick="newVideo()">Yeni Vine <i class="fas fa-angle-right"></i></a>
+        <a href="#" id="btn-prev" class="btn-next btn-light btn-skip" onclick="prevVideo()"><i class="fas fa-angle-left"></i> Önceki Vine</a>
         </div>
 
 
-        <a class="btn-light btn-outline-light btn-vine" id="btn-mobile" href="https://forms.gle/HfHbjrFVALLm3wGt8" target="_blank">Vine Gönder</a>
+        <button class="btn-light btn-outline-light btn-vine" id="btn-mobile"><a href="https://forms.gle/HfHbjrFVALLm3wGt8" target="_blank">Vine Gönder</a></button>
 
-        <a id="btn-install-mobile" class="btn-light btn-outline-light btn-vine" href="guide.html">Uygulamayı indir <i class="fas fa-arrow-circle-down"></i></a>
+        <button id="btn-install-mobile" class="btn-light btn-outline-light btn-vine"><a href="guide.html">Uygulamayı indir </a> <i class="fas fa-arrow-circle-down"></i></button>
+
         <p class="small-laptop"><i>Sağ ok tuşuna basarak bir sonraki vine'a, sol ok tuşuna basarak bir önceki vine'a geçebilirsin!</i></p>
       </div>
       <p class="small-desktop"><i>Sağ ok tuşuna basarak bir sonraki vine'a, sol ok tuşuna basarak bir önceki vine'a geçebilirsin!</i></p>

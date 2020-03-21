@@ -112,13 +112,8 @@
 
 }(window, document));
 
+//Main.js
 
-
-// MAIN.JS //
-
-
-
-// Load the service worker and register it
 window.addEventListener("load", () => {
   registerSW();
 });
@@ -134,22 +129,15 @@ async function registerSW() {
 }
 
 
-// Load the new video on the first load
+
+
 window.addEventListener("load", () => {
   newVideo();
 });
 
-// Detect safari
-  if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Mac') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
-    name = "Safari"
-    alert("Merhaba iOS kullanıcısı, Apple kaynaklı bir problemden dolayı şu an için uygulamamız çalışmıyor. Biz onunla uğraşırken senden vineları web tarayıcından izlemeni rica ediyoruz.");
-    console.log("Safari")
-};
 
-// Video source for getting videos
-const srcRaw = "https://raw.githubusercontent.com/ondersumer07/vinematik-videos/master/vid/";
 
-// Create the random ids for videos to load
+
 let videoids = []
 
 function randomNum() {
@@ -157,54 +145,33 @@ function randomNum() {
   return rando;
 };
 
-// New video section
 
-// Push the new video source to the HTML and push the ID to the array
+
 function newVideo() {
   let videoid = randomNum()
-  document.getElementById("vsrc").src = srcRaw + videoid + ".mp4";
+  document.getElementById("vsrc").src = "https://raw.githubusercontent.com/ondersumer07/vinematik-videos/master/vid/" + videoid + ".mp4";
   document.getElementById("videoEl").load();
   videoids.push(videoid);
   console.log(videoids);
   console.log(videoids.last());
 };
 
-// Start a new video by swiping left
-document.addEventListener('swiped-left', function(e) {
-  newVideo()
-});
 
-// Start a new video by cliking right arrow key
-document.addEventListener("keydown", function(e) {
-  const key = event.key;
-  switch (key) {
-    case "ArrowRight":
-      newVideo()
-      break;
-    default:
+// PREVIOUS VIDEO
 
-  }
-});
-
-
-
-// Previous video section
-
-// Add new last() method
+// add new last() method:
 if (!Array.prototype.last) {
   Array.prototype.last = function() {
     return this[this.length - 2];
   };
 };
 
-// Function for going to the previous video
 function prevVideo() {
-  document.getElementById("vsrc").src = srcRaw + videoids.last() + ".mp4";
+  document.getElementById("vsrc").src = "https://raw.githubusercontent.com/ondersumer07/vinematik-videos/master/vid/" + videoids.last() + ".mp4";
   document.getElementById("videoEl").load();
   videoids.push(videoids.last());
 }
 
-// Go back to the previous video by pressing left arrow button
 document.addEventListener("keydown", function(e) {
   const key = event.key;
   switch (key) {
@@ -216,10 +183,27 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-// Go back to the previous video by swiping right
 document.addEventListener('swiped-right', function(e) {
   prevVideo()
 });
 
-// Start a new video when the current one ended
+// ENDING
+
 document.getElementById("videoEl").addEventListener("ended", newVideo, false);
+
+document.addEventListener("keydown", function(e) {
+  const key = event.key;
+  switch (key) {
+    case "ArrowRight":
+      newVideo()
+      break;
+    default:
+
+  }
+});
+
+document.addEventListener('swiped-left', function(e) {
+  newVideo()
+});
+
+//trys
