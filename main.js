@@ -140,7 +140,7 @@ window.addEventListener("load", () => {
 });
 
 // Detect safari
-  if(navigator.userAgent.indexOf("Safari") != -1 ){
+  if(navigator.userAgent.indexOf("Safari") != -1 && navigator.userAgent.indexOf("Chrome") == -1){
     name = "Safari"
     alert("Merhaba iOS kullanıcısı, Apple kaynaklı bir problemden dolayı şu an için uygulamamız çalışmıyor. Biz onunla uğraşırken senden vineları web tarayıcından izlemeni rica ediyoruz.");
     console.log("Safari")
