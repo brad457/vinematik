@@ -19,16 +19,6 @@
       "sizes": "180x180"
     },
     {
-      "src": "apple-touch-icon.png",
-      "type": "image/png",
-      "sizes": "180x180"
-    },
-    {
-      "src": "apple-touch-icon-precomposed.png",
-      "type": "image/png",
-      "sizes": "180x180"
-    },
-    {
       "src": "images/favicon-16x16.png",
       "type": "image/png",
       "sizes": "16x16"
@@ -42,6 +32,6 @@
   "start_url": "https://ondersumer07.github.io/vinematik/",
   "background_color": "#00adb5",
   "display": "standalone",
-  "scope": "https://ondersumer07.github.io/vinematik/",
+  "scope": "/",
   "theme_color": "#00adb5"
 }

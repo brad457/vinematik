@@ -6,109 +6,105 @@
  * @author John Doherty <www.johndoherty.info>
  * @license MIT
  */
-(function(window, document) {
+(function (window, document) {
 
-  'use strict';
+    'use strict';
 
-  // patch CustomEvent to allow constructor creation (IE/Chrome)
-  if (typeof window.CustomEvent !== 'function') {
+    // patch CustomEvent to allow constructor creation (IE/Chrome)
+    if (typeof window.CustomEvent !== 'function') {
 
-    window.CustomEvent = function(event, params) {
+        window.CustomEvent = function (event, params) {
 
-      params = params || {
-        bubbles: false,
-        cancelable: false,
-        detail: undefined
-      };
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
 
-      var evt = document.createEvent('CustomEvent');
-      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-      return evt;
-    };
+            var evt = document.createEvent('CustomEvent');
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt;
+        };
 
-    window.CustomEvent.prototype = window.Event.prototype;
-  }
-
-  document.addEventListener('touchstart', handleTouchStart, false);
-  document.addEventListener('touchmove', handleTouchMove, false);
-  document.addEventListener('touchend', handleTouchEnd, false);
-
-  var xDown = null;
-  var yDown = null;
-  var xDiff = null;
-  var yDiff = null;
-  var timeDown = null;
-  var startEl = null;
-
-  function handleTouchEnd(e) {
-
-    // if the user released on a different target, cancel!
-    if (startEl !== e.target) return;
-
-    var swipeThreshold = parseInt(startEl.getAttribute('data-swipe-threshold') || '20', 10); // default 10px
-    var swipeTimeout = parseInt(startEl.getAttribute('data-swipe-timeout') || '500', 10); // default 1000ms
-    var timeDiff = Date.now() - timeDown;
-    var eventType = '';
-
-    if (Math.abs(xDiff) > Math.abs(yDiff)) { // most significant
-      if (Math.abs(xDiff) > swipeThreshold && timeDiff < swipeTimeout) {
-        if (xDiff > 0) {
-          eventType = 'swiped-left';
-        } else {
-          eventType = 'swiped-right';
-        }
-      }
-    } else {
-      if (Math.abs(yDiff) > swipeThreshold && timeDiff < swipeTimeout) {
-        if (yDiff > 0) {
-          eventType = 'swiped-up';
-        } else {
-          eventType = 'swiped-down';
-        }
-      }
+        window.CustomEvent.prototype = window.Event.prototype;
     }
 
-    if (eventType !== '') {
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
+    document.addEventListener('touchend', handleTouchEnd, false);
 
-      // fire event on the element that started the swipe
-      startEl.dispatchEvent(new CustomEvent(eventType, {
-        bubbles: true,
-        cancelable: true
-      }));
+    var xDown = null;
+    var yDown = null;
+    var xDiff = null;
+    var yDiff = null;
+    var timeDown = null;
+    var startEl = null;
 
-      // if (console && console.log) console.log(eventType + ' fired on ' + startEl.tagName);
+    function handleTouchEnd(e) {
+
+        // if the user released on a different target, cancel!
+        if (startEl !== e.target) return;
+
+        var swipeThreshold = parseInt(startEl.getAttribute('data-swipe-threshold') || '20', 10);    // default 10px
+        var swipeTimeout = parseInt(startEl.getAttribute('data-swipe-timeout') || '500', 10);      // default 1000ms
+        var timeDiff = Date.now() - timeDown;
+        var eventType = '';
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) { // most significant
+            if (Math.abs(xDiff) > swipeThreshold && timeDiff < swipeTimeout) {
+                if (xDiff > 0) {
+                    eventType = 'swiped-left';
+                }
+                else {
+                    eventType = 'swiped-right';
+                }
+            }
+        }
+        else {
+            if (Math.abs(yDiff) > swipeThreshold && timeDiff < swipeTimeout) {
+                if (yDiff > 0) {
+                    eventType = 'swiped-up';
+                }
+                else {
+                    eventType = 'swiped-down';
+                }
+            }
+        }
+
+        if (eventType !== '') {
+
+            // fire event on the element that started the swipe
+            startEl.dispatchEvent(new CustomEvent(eventType, { bubbles: true, cancelable: true }));
+
+            // if (console && console.log) console.log(eventType + ' fired on ' + startEl.tagName);
+        }
+
+        // reset values
+        xDown = null;
+        yDown = null;
+        timeDown = null;
     }
 
-    // reset values
-    xDown = null;
-    yDown = null;
-    timeDown = null;
-  }
+    function handleTouchStart(e) {
 
-  function handleTouchStart(e) {
+        // if the element has data-swipe-ignore="true" we stop listening for swipe events
+        if (e.target.getAttribute('data-swipe-ignore') === 'true') return;
 
-    // if the element has data-swipe-ignore="true" we stop listening for swipe events
-    if (e.target.getAttribute('data-swipe-ignore') === 'true') return;
+        startEl = e.target;
 
-    startEl = e.target;
+        timeDown = Date.now();
+        xDown = e.touches[0].clientX;
+        yDown = e.touches[0].clientY;
+        xDiff = 0;
+        yDiff = 0;
+    }
 
-    timeDown = Date.now();
-    xDown = e.touches[0].clientX;
-    yDown = e.touches[0].clientY;
-    xDiff = 0;
-    yDiff = 0;
-  }
+    function handleTouchMove(e) {
 
-  function handleTouchMove(e) {
+        if (!xDown || !yDown) return;
 
-    if (!xDown || !yDown) return;
+        var xUp = e.touches[0].clientX;
+        var yUp = e.touches[0].clientY;
 
-    var xUp = e.touches[0].clientX;
-    var yUp = e.touches[0].clientY;
-
-    xDiff = xDown - xUp;
-    yDiff = yDown - yUp;
-  }
+        xDiff = xDown - xUp;
+        yDiff = yDown - yUp;
+    }
 
 }(window, document));
 
@@ -128,70 +124,19 @@ async function registerSW() {
   }
 }
 
-
-
-
 window.addEventListener("load", () => {
   newVideo();
 });
 
 
-
-
-let videoids = []
-
-function randomNum() {
-  let rando = Math.floor((Math.random() * 3970) + 1);
-  return rando;
-};
-
-
-
-function newVideo() {
-  let videoid = randomNum()
-  document.getElementById("vsrc").src = "https://raw.githubusercontent.com/ondersumer07/vinematik-videos/master/vid/" + videoid + ".mp4";
+function newVideo(){
+  document.getElementById("vsrc").src = "vid/" + Math.floor((Math.random() * 3970) + 1) + ".mp4";
   document.getElementById("videoEl").load();
-  videoids.push(videoid);
-  console.log(videoids);
-  console.log(videoids.last());
-};
-
-
-// PREVIOUS VIDEO
-
-// add new last() method:
-if (!Array.prototype.last) {
-  Array.prototype.last = function() {
-    return this[this.length - 2];
-  };
-};
-
-function prevVideo() {
-  document.getElementById("vsrc").src = "https://raw.githubusercontent.com/ondersumer07/vinematik-videos/master/vid/" + videoids.last() + ".mp4";
-  document.getElementById("videoEl").load();
-  videoids.push(videoids.last());
 }
-
-document.addEventListener("keydown", function(e) {
-  const key = event.key;
-  switch (key) {
-    case "ArrowLeft":
-      prevVideo()
-      break;
-    default:
-
-  }
-});
-
-document.addEventListener('swiped-right', function(e) {
-  prevVideo()
-});
-
-// ENDING
 
 document.getElementById("videoEl").addEventListener("ended", newVideo, false);
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function(e){
   const key = event.key;
   switch (key) {
     case "ArrowRight":
@@ -203,7 +148,5 @@ document.addEventListener("keydown", function(e) {
 });
 
 document.addEventListener('swiped-left', function(e) {
-  newVideo()
+    newVideo()
 });
-
-//trys
