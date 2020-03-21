@@ -139,6 +139,13 @@ window.addEventListener("load", () => {
   newVideo();
 });
 
+// Detect safari
+  if(navigator.userAgent.indexOf("Safari") != -1 ){
+    name = "Safari"
+    alert("Merhaba iOS kullanıcısı, Apple kaynaklı bir problemden dolayı şu an için uygulamamız çalışmıyor. Biz onunla uğraşırken senden vineları web tarayıcından izlemeni rica ediyoruz.");
+    console.log("Safari")
+};
+
 // Video source for getting videos
 const srcRaw = "https://raw.githubusercontent.com/ondersumer07/vinematik-videos/master/vid/";
 
